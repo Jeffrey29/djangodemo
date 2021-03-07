@@ -1,0 +1,9 @@
+{% if all_students %}
+    <ul>
+        {% for student in all_students %}
+        <li><a href="{% url 'courses:student_detail' student.z_id %}">{{ student }} - {{ student.z_id }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>There are no students</p>
+{% endif %}
