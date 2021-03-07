@@ -5,7 +5,7 @@
     </head>
     <body>
         <p>{{ student }} ({{ student.z_id }}) is enrolled in:</p>
-        {% if student.courses %}
+        {% if student.courses.all %}
             <ul>
                 {% for course in student.courses.all %}
                     <li>{{ course.course_code }} - {{ course.course_name }}</li>
