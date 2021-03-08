@@ -1,0 +1,25 @@
+{% extends 'courses/base.html' %}
+
+{% block content %}
+    <h2>{{ student }}</h2>
+    <p>{{ student }} ({{ student.z_id }}) is enrolled in:</p>
+    {% if student.courses.all %}
+        <ul>
+            {% for course in student.courses.all %}
+                <li>{{ course.course_code }} - {{ course.course_name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>This student is not enrolled in any courses</p>
+    {% endif %}
+    <input type="button" value="Edit" class="btn btn-primary btn-sm"
+            onclick="location.href='{% url 'courses:edit_student' student.z_id %}'">
+    <br /><br />
+    <form action="{% url 'courses:delete_student' student.z_id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete student" class="btn btn-danger btn-sm">
+    </form>
+    <br />
+    <input type="button" value="Back" class="btn btn-secondary btn-sm"
+            onclick="location.href='{% url 'courses:all_students' %}'">
+{% endblock %}

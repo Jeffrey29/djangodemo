@@ -1,0 +1,18 @@
+{% extends 'courses/base.html' %}
+
+{% block content %}
+    <h2>All students</h2>
+    {% if all_students %}
+        <ul class="list-group">
+            {% for student in all_students %}
+            <a href="{% url 'courses:student_detail' student.z_id %}"
+                class="list-group-item list-group-item-action">{{ student }} - {{ student.z_id }}</a>
+            {% endfor %}
+        </ul>
+        <br />
+    {% else %}
+        <p>There are no students</p>
+    {% endif %}
+    <input type="button" value="Add new student" class="btn btn-primary btn-sm" 
+        onclick="location.href='{% url 'courses:new_student' %}'">
+{% endblock %}

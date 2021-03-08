@@ -1,0 +1,15 @@
+{% extends 'courses/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2>Edit student information</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success btn-sm">Save</button>
+    </form>
+    <br /><br />
+    <input type="button" value="Cancel" class="btn btn-secondary btn-sm"
+        onclick="location.href='{% url 'courses:student_detail' student.z_id %}'">
+{% endblock %}
