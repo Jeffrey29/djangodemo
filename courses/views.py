@@ -28,22 +28,22 @@ class AllStudentsView(generic.ListView):
     model = Student 
     queryset = Student.objects.all()
     context_object_name = 'all_students'
-    template_name = 'courses/all_students.html'
+    template_name = 'courses/students/all_students.html'
 
 class StudentDetailView(generic.DetailView):
     model = Student 
-    template_name = 'courses/student_detail.html'
+    template_name = 'courses/students/student_detail.html'
 
 class NewStudent(generic.CreateView):
     model = Student 
-    template_name = 'courses/new_student.html'
+    template_name = 'courses/students/new_student.html'
     form_class = NewStudentForm
     success_url = reverse_lazy('courses:all_students')
 
 class EditStudent(generic.UpdateView):
     model = Student 
     form_class = EditStudentForm
-    template_name = 'courses/edit_student.html'
+    template_name = 'courses/students/edit_student.html'
     
     def get_success_url(self, **kwargs):         
         return reverse_lazy('courses:student_detail', args=(self.object.z_id,))
@@ -57,3 +57,4 @@ def delete_student(request, pk):
         return redirect('courses:all_students')
 
     return redirect('courses:all_students')
+    
