@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course, Student, Enrolment
 from .serializers import CourseSerializer, StudentSerializer, EnrolmentSerializer
-from .forms import NewStudentForm
+from .forms import NewStudentForm, EditStudentForm
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -37,6 +37,23 @@ class StudentDetailView(generic.DetailView):
 class NewStudent(generic.CreateView):
     model = Student 
     template_name = 'courses/new_student.html'
-    # fields = ('z_id', 'first_name', 'last_name', 'courses')
     form_class = NewStudentForm
     success_url = reverse_lazy('courses:all_students')
+
+class EditStudent(generic.UpdateView):
+    model = Student 
+    form_class = EditStudentForm
+    template_name = 'courses/edit_student.html'
+    
+    def get_success_url(self, **kwargs):         
+        return reverse_lazy('courses:student_detail', args=(self.object.z_id,))
+
+def delete_student(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+
+    if request.method == 'POST':
+        student.delete()
+        print('delete here')
+        return redirect('courses:all_students')
+
+    return redirect('courses:all_students')

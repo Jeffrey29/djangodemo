@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses',
     'rest_framework',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Crispy forms using Boostrap 4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
