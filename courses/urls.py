@@ -11,7 +11,7 @@ router.register('courses', views.CourseViewSet)
 router.register('enrolments', views.EnrolmentViewSet)
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="courses/index.html")),
+    path('', TemplateView.as_view(template_name="courses/index.html"), name='students_home'),
     path('students/', views.AllStudentsView.as_view(), name='all_students'),
     path('new-student/', views.NewStudent.as_view(), name='new_student'),
     path('<str:pk>/', views.StudentDetailView.as_view(), name='student_detail'),

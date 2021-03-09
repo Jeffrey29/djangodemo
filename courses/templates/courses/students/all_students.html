@@ -15,4 +15,6 @@
     {% endif %}
     <input type="button" value="Add new student" class="btn btn-primary btn-sm" 
         onclick="location.href='{% url 'courses:new_student' %}'">
+    <input type="button" value="Home" class="btn btn-secondary btn-sm" 
+    onclick="location.href='{% url 'courses:students_home' %}'">
 {% endblock %}
