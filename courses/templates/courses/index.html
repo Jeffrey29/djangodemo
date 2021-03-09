@@ -1,0 +1,20 @@
+{% extends 'courses/base.html' %}
+
+{% block content %}
+<h2>Welcome to this simple Django app</h2>
+<h5>
+    There are student and course models, and a many to many relationship between
+    the two defined as enrolments
+</h5>
+<p>So far the model editing via UI has only been implemented for students, and can be found here</p>
+<input type="button" value="See and edit students" class="btn btn-primary btn-sm" 
+    onclick="location.href='{% url 'courses:all_students' %}'">
+<br /><br />
+<p>All of students, courses and models can be edited via the API here</p>
+<input type="button" value="Students API" class="btn btn-primary btn-sm" 
+    onclick="location.href='{% url 'courses:student-list' %}'">
+<input type="button" value="Courses API" class="btn btn-primary btn-sm" 
+    onclick="location.href='{% url 'courses:course-list' %}'">
+<input type="button" value="Enrolments API" class="btn btn-primary btn-sm" 
+    onclick="location.href='{% url 'courses:enrolment-list' %}'">
+{% endblock %}

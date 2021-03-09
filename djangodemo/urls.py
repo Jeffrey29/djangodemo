@@ -15,16 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from courses import views
-from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register('students', views.StudentViewSet)
-router.register('courses', views.CourseViewSet)
-router.register('enrolments', views.EnrolmentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
     path('courses/', include('courses.urls'))
 ]
